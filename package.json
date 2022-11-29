@@ -1,0 +1,23 @@
+{
+  "name": "notesappapi",
+  "version": "1.0.0",
+  "description": "API for a notes app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yZipperer/NotesAppAPI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yZipperer/NotesAppAPI/issues"
+  },
+  "homepage": "https://github.com/yZipperer/NotesAppAPI#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.7.4"
+  }
+}
