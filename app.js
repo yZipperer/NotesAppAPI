@@ -3,7 +3,10 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const dotenv = require("dotenv");
 
+const notesRoutes = require("./routes/notes");
+
 const app = express();
+app.use(express.json());
 dotenv.config();
 
 mongoose.connect(process.env.MURI, {
@@ -13,11 +16,7 @@ mongoose.connect(process.env.MURI, {
 .then(() => console.log("Database Connected"))
 .catch((error) => console.log(error.message));
 
-app.get("/notes", (req, res) => {
-    fs.readFile("./testData/notes.json", "utf-8", (err, data) => {
-        (err) ? console.log(err) : res.send(data);
-    });
-});
+app.use("/", notesRoutes);
 
 app.listen(8080, () => {
     console.log("Server Started: Port 8080");
