@@ -1,6 +1,9 @@
-const Notes = require("./models/notes");
+const express = require("express");
+const router = express.Router();
 
-app.get("/notes", (req, res) => {
+const Notes = require("../models/notes");
+
+router.get("/notes", (req, res) => {
     const notes = Notes.find({})
     .then(() => {
         res.status(200).send(notes);
@@ -10,7 +13,7 @@ app.get("/notes", (req, res) => {
     });
 });
 
-app.post("/notes", (req, res) => {
+router.post("/notes", (req, res) => {
     const note = new Notes(req.body);
 
     note.save()
@@ -22,7 +25,7 @@ app.post("/notes", (req, res) => {
     });
 });
 
-app.patch("/notes/:id", async (req, res) => {
+router.patch("/notes/:id", async (req, res) => {
     try{
         const note = await Notes.findById(req.params.id);
         
@@ -39,7 +42,7 @@ app.patch("/notes/:id", async (req, res) => {
     }
 });
 
-app.delete("/notes/:id", async (req, res) => {
+router.delete("/notes/:id", async (req, res) => {
     try{
         const note = await Notes.findByIdAndDelete(req.params.id);
         
@@ -52,3 +55,5 @@ app.delete("/notes/:id", async (req, res) => {
         res.status(500).send(err);
     }
 });
+
+module.exports = router;
