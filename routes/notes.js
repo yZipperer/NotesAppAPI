@@ -3,14 +3,13 @@ const router = express.Router();
 
 const Notes = require("../models/notes");
 
-router.get("/notes", (req, res) => {
-    const notes = Notes.find({})
-    .then(() => {
+router.get("/notes", async (req, res) => {
+    try{
+        const notes = await Notes.find({});
         res.status(200).send(notes);
-    })
-    .catch((err) => {
+    } catch(err) {
         res.status(500).send(err);
-    });
+    }
 });
 
 router.post("/notes", (req, res) => {
